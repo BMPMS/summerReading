@@ -1,19 +1,17 @@
-// svelte.config.js
 import adapter from '@sveltejs/adapter-static';
 
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-	// ... (your preprocess and other settings)
-
+export default {
 	kit: {
 		adapter: adapter({
-			// default options are precompress: false, generate: 'emitted', fallback: 'index.html'
-			pages: 'build',      // path to where the static files will be generated
-			assets: 'build',     // path to where the static assets will be copied
-			fallback: 'index.html', // SPA fallback for client-side routing (e.g., for 404s on refresh)
-			precompress: false   // set to true to enable precompression (gzip, brotli)
-		})
+			pages: 'build',      // Output to 'build' directory (GitHub Pages expects this by default)
+			assets: 'build'
+		}),
+		paths: {
+			base: '/summerReading' // IMPORTANT: Set this to your repo name
+		},
+		appDir: 'summerReading', // Optional: rename _app to app
+		prerender: {
+			entries: ['*']
+		}
 	}
 };
-
-export default config;

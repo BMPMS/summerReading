@@ -1,0 +1,164 @@
+{
+  ".svelte-kit/generated/client-optimized/app.js": {
+    "file": "summerReading/immutable/entry/app.Bzaiqnh1.js",
+    "name": "entry/app",
+    "src": ".svelte-kit/generated/client-optimized/app.js",
+    "isEntry": true,
+    "imports": [
+      "_D9ilNhbh.js",
+      "_CugmvEZG.js",
+      "_BmfI596L.js",
+      "_CEuUZKJQ.js",
+      "_ClimR6Dr.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/generated/client-optimized/nodes/0.js",
+      ".svelte-kit/generated/client-optimized/nodes/1.js",
+      ".svelte-kit/generated/client-optimized/nodes/2.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.js": {
+    "file": "summerReading/immutable/nodes/0.Blg82Frc.js",
+    "name": "nodes/0",
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_BmfI596L.js",
+      "_eZ432xZd.js",
+      "_D9ilNhbh.js",
+      "_BGdSZXz-.js"
+    ],
+    "css": [
+      "summerReading/immutable/assets/0.zyvHb9E2.css"
+    ],
+    "assets": [
+      "summerReading/immutable/assets/figtree-latin-ext-400-normal.CXAzuTZb.woff2",
+      "summerReading/immutable/assets/figtree-latin-ext-400-normal.Gbh-3PTk.woff",
+      "summerReading/immutable/assets/figtree-latin-400-normal.g7Dtegnw.woff2",
+      "summerReading/immutable/assets/figtree-latin-400-normal.BD4aNku5.woff"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/1.js": {
+    "file": "summerReading/immutable/nodes/1.CMS8-kWi.js",
+    "name": "nodes/1",
+    "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_BmfI596L.js",
+      "_eZ432xZd.js",
+      "_D9ilNhbh.js",
+      "_CugmvEZG.js",
+      "_BQQu_mF3.js",
+      "_CZHx0Q1-.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/2.js": {
+    "file": "summerReading/immutable/nodes/2.BFV3w_PM.js",
+    "name": "nodes/2",
+    "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_BmfI596L.js",
+      "_eZ432xZd.js",
+      "_CEuUZKJQ.js",
+      "_D9ilNhbh.js",
+      "_CugmvEZG.js",
+      "_BQQu_mF3.js",
+      "_ClimR6Dr.js",
+      "_BGdSZXz-.js"
+    ],
+    "css": [
+      "summerReading/immutable/assets/2.DFIUOWi2.css"
+    ]
+  },
+  "_BGdSZXz-.js": {
+    "file": "summerReading/immutable/chunks/BGdSZXz-.js",
+    "name": "slot",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "_BQQu_mF3.js": {
+    "file": "summerReading/immutable/chunks/BQQu_mF3.js",
+    "name": "lifecycle",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "_BmfI596L.js": {
+    "file": "summerReading/immutable/chunks/BmfI596L.js",
+    "name": "disclose-version",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "_CEuUZKJQ.js": {
+    "file": "summerReading/immutable/chunks/CEuUZKJQ.js",
+    "name": "index-client",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "_CZHx0Q1-.js": {
+    "file": "summerReading/immutable/chunks/CZHx0Q1-.js",
+    "name": "entry",
+    "imports": [
+      "_D9ilNhbh.js",
+      "_CEuUZKJQ.js"
+    ]
+  },
+  "_ClimR6Dr.js": {
+    "file": "summerReading/immutable/chunks/ClimR6Dr.js",
+    "name": "props",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "_CugmvEZG.js": {
+    "file": "summerReading/immutable/chunks/CugmvEZG.js",
+    "name": "render",
+    "imports": [
+      "_D9ilNhbh.js",
+      "_BmfI596L.js"
+    ]
+  },
+  "_D9ilNhbh.js": {
+    "file": "summerReading/immutable/chunks/D9ilNhbh.js",
+    "name": "runtime"
+  },
+  "_eZ432xZd.js": {
+    "file": "summerReading/immutable/chunks/eZ432xZd.js",
+    "name": "legacy",
+    "imports": [
+      "_D9ilNhbh.js"
+    ]
+  },
+  "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff": {
+    "file": "summerReading/immutable/assets/figtree-latin-400-normal.BD4aNku5.woff",
+    "src": "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff"
+  },
+  "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff2": {
+    "file": "summerReading/immutable/assets/figtree-latin-400-normal.g7Dtegnw.woff2",
+    "src": "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff": {
+    "file": "summerReading/immutable/assets/figtree-latin-ext-400-normal.Gbh-3PTk.woff",
+    "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2": {
+    "file": "summerReading/immutable/assets/figtree-latin-ext-400-normal.CXAzuTZb.woff2",
+    "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
+    "file": "summerReading/immutable/entry/start.cmNE_W6q.js",
+    "name": "entry/start",
+    "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
+    "isEntry": true,
+    "imports": [
+      "_CZHx0Q1-.js"
+    ]
+  }
+}
