@@ -9,7 +9,7 @@ html, body {
 
 
 .header {
-    height: 150px;
+    height: 120px;
     width: 100%;
     padding: 0px;
     padding-left: 10px;
@@ -20,7 +20,6 @@ html, body {
     align-items: start;
     background-color: white;
     box-sizing: border-box;
-
     font-size: 14px;
     color: #1a435d;
     font-weight: 300;
@@ -43,33 +42,39 @@ html, body {
 
 
 .header-right img {
-    height: 120px;
+    height: 100px;
     object-fit: cover;
 }
 
 .chart {
-    height: calc(100vh - 190px);
+    height: calc(100vh - 200px);
     width: 100%;
     background-color: #e0e0e0;
 }
 
 .footer {
-    height: 40px;
+    height: 60px;
     width: 100%;
+    font-size: 14px;
     background-color: white;
     text-align: center;
-    color: #256785;
-
     display: flex;
     align-items: center; /* Vertical centering */
-    justify-content: center; /* Optional: Horizontal centering */
+    justify-content: center; /* Horizontal centering */
 }
 
-/* Remove default link styling */
+.footer span {
+    display: inline;
+}
+.header-left span{
+    display: inline;
+}
+
 .footer a {
-    font-weight: 600;
-    text-decoration: none;
-    color: inherit; /* Use the same text color as .footer */
+    color: inherit;          /* Match parent text color */
+    text-decoration: none;   /* Remove underline, optional */
+    display: inline;         /* Ensure inline display */
+    margin: 0 4px;           /* Add spacing if needed */
 }
 
 .modal-overlay {
@@ -135,70 +140,4 @@ html, body {
     gap: 3px;
     font-size: 26px;
     color: gold;
-}
-
-.suggestionsButton{
-    margin-left: 4px;
-   background-color: #F0F0F0;
-    border: transparent 0px solid;
-    color: #256785;
-    font-weight: bold;
-    border-radius: 2px;
-
-}
-.suggestions-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.suggestions-modal {
-    background: white;
-    width: 500px;
-    height: 400px;
-    padding: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 8px;
-}
-
-.suggestions-form-group {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-
-suggestions-label {
-    margin-top: 0px;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.suggestions-input,
-.suggestions-textarea {
-    padding: 4px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.suggestions-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 4px;
-}
-
-suggestions-button {
-    padding: 8px 16px;
-    font-size: 1rem;
-    cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import { d as slot } from "../../chunks/index.js";
 function _layout($$payload, $$props) {
   $$payload.out += `<!---->`;
-  slot($$payload, $$props, "default", {}, null);
+  slot($$payload, $$props, "default", {});
   $$payload.out += `<!---->`;
 }
 export {
