@@ -8,6 +8,37 @@ function lifecycle_outside_component(name) {
     throw new Error(`https://svelte.dev/e/lifecycle_outside_component`);
   }
 }
+const ATTR_REGEX = /[&"<]/g;
+const CONTENT_REGEX = /[&<]/g;
+function escape_html(value, is_attr) {
+  const str = String(value ?? "");
+  const pattern = is_attr ? ATTR_REGEX : CONTENT_REGEX;
+  pattern.lastIndex = 0;
+  let escaped = "";
+  let last = 0;
+  while (pattern.test(str)) {
+    const i = pattern.lastIndex - 1;
+    const ch = str[i];
+    escaped += str.substring(last, i) + (ch === "&" ? "&amp;" : ch === '"' ? "&quot;" : "&lt;");
+    last = i + 1;
+  }
+  return escaped + str.substring(last);
+}
+const replacements = {
+  translate: /* @__PURE__ */ new Map([
+    [true, "yes"],
+    [false, "no"]
+  ])
+};
+function attr(name, value, is_boolean = false) {
+  if (value == null || !value && is_boolean) return "";
+  const normalized = name in replacements && replacements[name].get(value) || value;
+  const assignment = is_boolean ? "" : `="${escape_html(normalized, true)}"`;
+  return ` ${name}${assignment}`;
+}
+function to_style(value, styles) {
+  return value == null ? null : String(value);
+}
 var current_component = null;
 function getContext(key) {
   const context_map = get_or_init_context_map();
@@ -110,6 +141,10 @@ function render(component, options = {}) {
     body: payload.out
   };
 }
+function attr_style(value, directives) {
+  var result = to_style(value);
+  return result ? ` style="${escape_html(result, true)}"` : "";
+}
 function slot(payload, $$props, name, slot_props, fallback_fn) {
   var slot_fn = $$props.$$slots?.[name];
   if (slot_fn === true) {
@@ -141,9 +176,12 @@ export {
   HYDRATION_END as b,
   pop as c,
   slot as d,
-  bind_props as e,
-  ensure_array_like as f,
+  escape_html as e,
+  bind_props as f,
   getContext as g,
+  ensure_array_like as h,
+  attr as i,
+  attr_style as j,
   push as p,
   render as r,
   setContext as s

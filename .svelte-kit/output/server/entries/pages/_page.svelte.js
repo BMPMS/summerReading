@@ -1,19 +1,18 @@
 import "clsx";
-import { e as bind_props, c as pop, p as push, f as ensure_array_like } from "../../chunks/index.js";
+import { f as bind_props, c as pop, p as push, h as ensure_array_like, i as attr, e as escape_html, j as attr_style } from "../../chunks/index.js";
 import "papaparse";
-import { h as fallback } from "../../chunks/utils.js";
 import * as d3 from "d3";
-import { e as escape_html } from "../../chunks/escaping.js";
+import { h as fallback } from "../../chunks/utils.js";
 function QuadrantChart($$payload, $$props) {
   push();
   let chartData = fallback($$props["chartData"], () => [], true);
   let width = fallback($$props["width"], 400);
   let height = fallback($$props["height"], 400);
-  let theme1 = fallback($$props["theme1"], () => ({}), true);
-  let theme2 = fallback($$props["theme2"], () => ({}), true);
-  let filterOptions = fallback($$props["filterOptions"], () => [], true);
+  const themeX = { value: "short-long" };
+  const themeY = {
+    value: "conceptual-technical"
+  };
   let svgNode;
-  const tempImageAddress = "https://m.media-amazon.com/images/W/MEDIAX_1215821-T1/images/I/71lqY2VNReL._SY466_.jpg";
   const colors = {
     blue: "#256785",
     orange: "#f69f00",
@@ -22,7 +21,8 @@ function QuadrantChart($$payload, $$props) {
     blueSubtle: "#2567850f",
     orangeSubtle: "#f69f000f"
   };
-  const margin = { top: 70, right: 60, bottom: 50, left: 60 };
+  const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+  const axisFontSize = 30;
   function forceRectCollide() {
     let nodes, sizes = (d) => [d.width || 10, d.height || 10], strength = 1, iterations = 1, bounds = null;
     function force() {
@@ -85,7 +85,7 @@ function QuadrantChart($$payload, $$props) {
       name: "topLeft",
       rectTransform: `translate(${margin.left},${margin.top})`,
       labelTransform: `translate(${margin.left + quadrantWidth},${margin.top - 20})`,
-      label: theme2.value.split("-")[0],
+      label: themeY.value.split("-")[0],
       labelFill: "#D0D0D0",
       rectFill: colors.orangeSubtle,
       markerPath: "M9,-4L1,0L9,4"
@@ -94,7 +94,7 @@ function QuadrantChart($$payload, $$props) {
       name: "bottomLeft",
       rectTransform: `translate(${margin.left},${margin.top + quadrantHeight})`,
       labelTransform: `translate(${margin.left + quadrantWidth},${margin.top + chartHeight + 40})`,
-      label: theme2.value.split("-")[1],
+      label: themeY.value.split("-")[1],
       labelFill: "#808080",
       rectFill: colors.orangeStrong,
       markerPath: "M1, -4L9,0L1,4"
@@ -103,7 +103,7 @@ function QuadrantChart($$payload, $$props) {
       name: "topRight",
       rectTransform: `translate(${margin.left + quadrantWidth},${margin.top})`,
       labelTransform: `translate(${margin.left - 20},${margin.top + quadrantHeight}) rotate(-90)`,
-      label: theme1.value.split("-")[0],
+      label: themeX.value.split("-")[0],
       labelFill: colors.orange,
       rectFill: colors.blueSubtle,
       markerPath: "M9,-4L1,0L9,4"
@@ -112,7 +112,7 @@ function QuadrantChart($$payload, $$props) {
       name: "bottomRight",
       rectTransform: `translate(${margin.left + quadrantWidth},${margin.top + quadrantHeight})`,
       labelTransform: `translate(${width - margin.right + 20},${margin.top + quadrantHeight}) rotate(90)`,
-      label: theme1.value.split("-")[1],
+      label: themeX.value.split("-")[1],
       labelFill: colors.blue,
       rectFill: colors.blueStrong,
       markerPath: "M1, -4L9,0L1,4"
@@ -123,8 +123,9 @@ function QuadrantChart($$payload, $$props) {
     svg.attr("width", width).attr("height", height).style("background-color", "white");
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
-    const bookWidth = Math.min(chartWidth / 2, 160);
-    const bookHeight = Math.min(chartHeight / 10, 40);
+    const bookWidth = Math.max(80, chartWidth / 8);
+    const bookHeight = Math.max(chartHeight / 12, 20);
+    const bookFontSize = bookHeight / 3;
     const quadrantWidth = chartWidth / 2;
     const quadrantHeight = chartHeight / 2;
     svg.select("#arrowStart").attr("viewBox", "0 -5 10 10").attr("refX", 5).attr("markerWidth", 10).attr("markerHeight", 10).attr("orient", "auto");
@@ -154,26 +155,30 @@ function QuadrantChart($$payload, $$props) {
     quadrantGroup.select(".arrowMarker").attr("id", (d) => `arrowMarker${d.name}`).attr("viewBox", "0 -5 10 10").attr("refX", 5).attr("markerWidth", 10).attr("markerHeight", 10).attr("orient", "auto");
     quadrantGroup.select(".markerPath").attr("fill", (d) => d.labelFill).attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("d", (d) => d.markerPath);
     quadrantGroup.select(".quadrantRect").attr("width", quadrantWidth).attr("height", quadrantHeight).attr("fill", (d) => d.rectFill).attr("transform", (d) => d.rectTransform);
-    quadrantGroup.select(".quadrantLabel").attr("text-anchor", "middle").attr("fill", (d) => d.labelFill).attr("font-size", 40).text((d) => d.label).attr("transform", (d) => d.labelTransform);
+    quadrantGroup.select(".quadrantLabel").attr("text-anchor", "middle").attr("fill", (d) => d.labelFill).attr("font-size", axisFontSize).text((d) => d.label).attr("transform", (d) => d.labelTransform);
     const bounds = {
       x0: 0,
       y0: 0,
       x1: quadrantWidth * 2 - bookWidth,
       y1: quadrantHeight * 2 - bookHeight
     };
-    const percentXScale = d3.scaleLinear().domain([0, 1]).range([0, quadrantWidth * 2]);
-    const percentYScale = d3.scaleLinear().domain([0, 1]).range([quadrantHeight * 2, 0]);
-    const nodes = chartData.filter((f) => filterOptions.length === 0 ? f : filterOptions.includes(f.Genre)).reduce(
+    const xScaleDomain = d3.extent(chartData, (d) => +d[themeX.value]);
+    const percentXScale = d3.scaleLinear().domain(xScaleDomain).range([0, quadrantWidth * 2]);
+    const yScaleDomain = d3.extent(chartData, (d) => +d[themeY.value]);
+    const percentYScale = d3.scaleLinear().domain(yScaleDomain).range([quadrantHeight * 2, 0]);
+    const nodes = chartData.reduce(
       (acc, entry) => {
-        debugger;
         acc.push({
           title: entry.Book_Title,
           author: entry.Author,
           summary: entry.Summary,
           genre: entry.Genre,
-          rating: entry["Goodreads Rank"],
-          xPos: percentXScale(entry[theme1.value]),
-          yPos: percentYScale(entry[theme2.value])
+          imageUrl: entry["Image Link"],
+          amazonUrl: entry["Link"],
+          rating: +entry["Goodreads Rank"],
+          ratingTotal: +entry["rating total"],
+          x: percentXScale(+entry[themeX.value]),
+          y: percentYScale(+entry[themeY.value])
         });
         return acc;
       },
@@ -183,7 +188,7 @@ function QuadrantChart($$payload, $$props) {
     const simulation = d3.forceSimulation().force("rectCollide", forceRectCollide().size([
       bookWidth + bookPadding,
       bookHeight + bookPadding
-    ]).strength(0.8).iterations(2).bounds(bounds)).force("x", d3.forceX((d) => d.xPos)).force("y", d3.forceY((d) => d.yPos));
+    ]).strength(0.8).iterations(2).bounds(bounds)).force("x", d3.forceX((d) => d.x)).force("y", d3.forceY((d) => d.y));
     simulation.stop();
     const nodesGroup = svg.select("#nodesGroup").selectAll(".nodesGroup").data(nodes).join((group) => {
       const enter = group.append("g").attr("class", "nodesGroup");
@@ -196,34 +201,31 @@ function QuadrantChart($$payload, $$props) {
       enter.append("rect").attr("class", "outlineRect");
       return enter;
     });
-    nodesGroup.on("click", (event, d) => {
+    nodesGroup.attr("transform", (d) => `translate(${margin.left + d.x},${margin.top + d.y})`).style("cursor", "pointer").on("click", (event, d) => {
     });
     nodesGroup.select(".fadeRect").attr("rx", 3).attr("ry", 3).attr("x", bookWidth * 0.85).attr("height", bookHeight).attr("width", bookWidth * 0.15).attr("fill", "url(#fade-gradient)");
     nodesGroup.select(".maskGroup").attr("mask", "url(#right-fade-mask)");
-    nodesGroup.select(".bookRect").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill", "white").attr("stroke-width", 0);
-    nodesGroup.select(".outlineRect").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill", "transparent").attr("stroke", "#A0A0A0").attr("stroke-width", 0.5);
-    nodesGroup.select(".bookImage").attr("pointer-events", "none").style("filter", "grayscale(100%)").attr("x", 2.5).attr("y", 2.5).attr("width", bookHeight - 5).attr("height", bookHeight - 5).attr("preserveAspectRatio", "xMidYMin slice").attr("xlink:href", tempImageAddress);
-    nodesGroup.select(".authorLabel").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 - 6).style("dominant-baseline", "middle").attr("font-size", 12).attr("fill", "#808080").text((d) => d.author);
-    nodesGroup.select(".titleLabel").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 + 7).style("dominant-baseline", "middle").attr("font-size", 13).attr("fill", "#484848").attr("font-weight", 450).text((d) => d.title);
+    nodesGroup.select(".bookRect").attr("pointer-events", "none").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill", "white").attr("stroke-width", 0);
+    nodesGroup.select(".outlineRect").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill-opacity", 0.2).attr("fill", "transparent").attr("stroke", "#A0A0A0").attr("stroke-width", 0.5).on("mouseover", (event, d) => {
+      svg.selectAll(".outlineRect").attr("fill", "transparent");
+      d3.select(event.currentTarget).attr("fill", "#D0D0D0");
+    }).on("mouseout", (event, d) => {
+      svg.selectAll(".outlineRect").attr("fill", "transparent");
+    });
+    nodesGroup.select(".bookImage").attr("pointer-events", "none").attr("pointer-events", "none").style("filter", "grayscale(100%)").attr("x", 2.5).attr("y", 2.5).attr("width", bookHeight - 5).attr("height", bookHeight - 5).attr("preserveAspectRatio", "xMidYMin slice").attr("xlink:href", (d) => d.imageUrl);
+    nodesGroup.select(".authorLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 - bookFontSize / 2).style("dominant-baseline", "middle").attr("font-size", bookFontSize).attr("fill", "#808080").text((d) => d.author);
+    nodesGroup.select(".titleLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 + bookFontSize / 1.5).style("dominant-baseline", "middle").attr("font-size", bookFontSize * 1.1).attr("fill", "#484848").attr("font-weight", 450).text((d) => d.title);
     simulation.on("tick", () => {
       nodesGroup.attr("transform", (d) => `translate(${margin.left + d.x},${margin.top + d.y})`);
     });
     simulation.nodes(nodes);
     simulation.alpha(1).restart();
   }
-  {
-    console.log(width, height, chartData, filterOptions, theme1, theme2);
+  if (width && height && chartData && themeX && themeY) {
     drawChart();
   }
   $$payload.out += `<svg><defs><marker id="arrowStart"><path id="arrowStartPath"></path></marker><marker id="arrowEnd"><path id="arrowEndPath"></path></marker><mask id="right-fade-mask"><linearGradient id="fade-gradient"><stop id="fade-gradient-stop1"></stop><stop id="fade-gradient-stop2"></stop></linearGradient><rect id="rightFadeMaskRect"></rect></mask></defs><g id="quadrantsGroup"></g><rect id="rectLeft"></rect><rect id="rectRight"></rect><line id="lineLeftRight"></line><rect id="rectTop"></rect><rect id="rectBottom"></rect><line id="lineTopBottom"></line><g id="nodesGroup"></g></svg>`;
-  bind_props($$props, {
-    chartData,
-    width,
-    height,
-    theme1,
-    theme2,
-    filterOptions
-  });
+  bind_props($$props, { chartData, width, height });
   pop();
 }
 function BookModal($$payload, $$props) {
@@ -233,15 +235,14 @@ function BookModal($$payload, $$props) {
   let onClose = fallback($$props["onClose"], () => {
   });
   let modalData = fallback($$props["modalData"], () => ({ title: "", author: "" }), true);
-  let rating = fallback($$props["rating"], 3.3);
   const maxStars = 5;
-  rounded = Math.round(rating);
+  rounded = Math.round(modalData.rating);
   emptyStars = maxStars - rounded;
   if (open) {
     $$payload.out += "<!--[-->";
     const each_array = ensure_array_like(Array(rounded));
     const each_array_1 = ensure_array_like(Array(emptyStars));
-    $$payload.out += `<div class="modal-overlay"><div class="modal"><div class="modal-top-left"><img id="bookImage" src="https://via.placeholder.com/200" alt="Image"/></div> <div class="modal-top-right"><p class="modal-title">${escape_html(modalData.title)}</p> <p>${escape_html(modalData.author)}</p> <p>${escape_html(modalData.genre)}</p> <div class="star-rating"><!--[-->`;
+    $$payload.out += `<div role="button" tabindex="0" class="modal-overlay">> <div role="button" tabindex="0" class="modal">> <div class="modal-top-left"><img id="bookImage"${attr("src", modalData.imageUrl)} alt="bookImage"/></div> <div class="modal-top-right"><p class="modal-title">${escape_html(modalData.title)}</p> <p>${escape_html(modalData.author)}</p> <p>${escape_html(modalData.genre)}</p> <div class="star-rating"${attr_style(`visibility:${modalData.rating === 0 ? "hidden" : "visible"};`)}><!--[-->`;
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       each_array[$$index];
       $$payload.out += `<span>★</span>`;
@@ -251,55 +252,59 @@ function BookModal($$payload, $$props) {
       each_array_1[$$index_1];
       $$payload.out += `<span>☆</span>`;
     }
-    $$payload.out += `<!--]--></div> <span class="modal-goodreads">${escape_html(modalData.rating)}</span></div> <div class="modal-bottom"><p>${escape_html(modalData.summary)}</p></div></div></div>`;
+    $$payload.out += `<!--]--></div> <span class="modal-goodreads">${escape_html(modalData.rating === 0 ? "" : `${modalData.rating} from ${modalData.ratingTotal} ratings`)}</span></div> <div class="modal-bottom"><a class="buy-button"${attr("href", modalData.amazonUrl)} target="_blank" rel="noopener noreferrer">Buy Now on Amazon</a> <p>${escape_html(modalData.summary)}</p></div></div></div>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]-->`;
-  bind_props($$props, { open, onClose, modalData, rating });
+  bind_props($$props, { open, onClose, modalData });
+  pop();
+}
+function SuggestionsModal($$payload, $$props) {
+  push();
+  let show = fallback($$props["show"], false);
+  let title = "";
+  let author = "";
+  let why = "";
+  if (show) {
+    $$payload.out += "<!--[-->";
+    $$payload.out += `<div class="suggestions-backdrop" role="button" tabindex="0">> <div class="suggestions-modal" role="button" tabindex="0">> <p class="modal-title">Summer Reading Suggestions</p> <div class="suggestions-form-group"><label for="title">Book Title</label> <input id="title" type="text" class="suggestions-input"${attr("value", title)}/></div> <div class="suggestions-form-group"><label for="author">Author</label> <input id="author" type="text" class="suggestions-input"${attr("value", author)}/></div> <div class="suggestions-form-group"><label for="why">Why?</label> <textarea id="why" rows="6" class="suggestions-textarea">`;
+    const $$body = escape_html(why);
+    if ($$body) {
+      $$payload.out += `${$$body}`;
+    }
+    $$payload.out += `</textarea></div> <div class="suggestions-actions"><button>Cancel</button> <button>Send Email</button></div></div></div>`;
+  } else {
+    $$payload.out += "<!--[!-->";
+  }
+  $$payload.out += `<!--]-->`;
+  bind_props($$props, { show });
   pop();
 }
 function _page($$payload, $$props) {
   push();
-  const themes = [
-    { value: "short-long", label: "short-long" },
-    {
-      value: "conceptual-technical",
-      label: "conceptual-technical"
-    },
-    {
-      value: "descriptive-prescriptive",
-      label: "descriptive-prescriptive"
-    },
-    { value: "art-science", label: "art-science" }
-  ];
-  let filterOptions = [];
-  let firstTheme = themes[0];
-  let secondTheme = themes[1];
   let chartData = [];
   let width = 0;
   let height = 0;
   let showModal = false;
   let modalData = {};
+  let showSuggestions = false;
   function closeModal() {
     showModal = false;
   }
-  $$payload.out += `<div class="header"><div class="header-left"><div class="title">Summer Reading selector</div> Filter, switch themes and browse 2025's top reads <br/><br/> <span>If you are an author of one of the books featured here and would like to request a revision to how your work is categorized or described, please don’t hesitate to reach out. We welcome your input and are happy to make adjustments.</span></div> <div class="header-right"><img src="/summerReading/hereLogo.png" alt="Logo"/></div></div> <div class="chart">`;
-  QuadrantChart($$payload, {
-    chartData,
-    filterOptions,
-    width,
-    height,
-    theme1: firstTheme,
-    theme2: secondTheme
-  });
+  $$payload.out += `<div class="header"><div class="header-left"><div class="top-row"><div class="title"></div> <div class="right-side" role="button" tabindex="0"></div></div> <span class="chat1">Educator-Recommended Reads from Our 2025 Survey</span> <span class="chat2"></span></div> <div class="header-right"><a href="https://www.evalhere.org/" target="_blank" rel="noopener noreferrer" class="logo-link"><img src="/summerReading/hereLogo.png" alt="Logo"/></a></div></div> <div class="chart">`;
+  QuadrantChart($$payload, { chartData, width, height });
   $$payload.out += `<!----> `;
   BookModal($$payload, {
     open: showModal,
     onClose: closeModal,
     modalData
   });
-  $$payload.out += `<!----></div> <div class="footer"><span>The design for this chart is 100% endebted to Evelina Parrou and her article <a href="https://www.theplot.media/p/story-books">“Back with story books”</a>.  Many thanks for the inspiration.</span></div>`;
+  $$payload.out += `<!----> `;
+  SuggestionsModal($$payload, { show: showSuggestions });
+  $$payload.out += `<!----></div> <div class="footer"><span>Development by <a href="https://www.bmdata.co.uk">BM Data Visualisation</a>.
+    The design for this visualisation is 100% indebted to Evelina Parrou and her
+    article <a href="https://www.theplot.media/p/story-books"><i>Back with story books</i></a>. Many thanks for the inspiration.</span></div>`;
   pop();
 }
 export {

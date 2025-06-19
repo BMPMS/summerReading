@@ -1,15 +1,15 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "summerReading/immutable/entry/app.dSv7d1Ms.js",
+    "file": "summerReading/immutable/entry/app.Bt_YP8Ne.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
     "imports": [
-      "_CZhZaakf.js",
-      "_BQej_wha.js",
-      "_CNzqxiAI.js",
-      "_FGnL2CKl.js",
-      "_jmpxI5Lk.js"
+      "_CJsu0oF3.js",
+      "_CXepd9Zv.js",
+      "_D2ejFbqw.js",
+      "_CpLbeKXf.js",
+      "_D_CXo6-R.js"
     ],
     "dynamicImports": [
       ".svelte-kit/generated/client-optimized/nodes/0.js",
@@ -18,15 +18,15 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/0.js": {
-    "file": "summerReading/immutable/nodes/0.CaZnI09K.js",
+    "file": "summerReading/immutable/nodes/0.BDwh2p73.js",
     "name": "nodes/0",
     "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_CNzqxiAI.js",
-      "_BoiGakL7.js",
-      "_CZhZaakf.js"
+      "_D2ejFbqw.js",
+      "_BsMAxyDu.js",
+      "_CJsu0oF3.js"
     ],
     "css": [
       "summerReading/immutable/assets/0.zyvHb9E2.css"
@@ -39,92 +39,92 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "summerReading/immutable/nodes/1.VAdsJLjm.js",
+    "file": "summerReading/immutable/nodes/1.Cqzxse6M.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_CNzqxiAI.js",
-      "_BoiGakL7.js",
-      "_CZhZaakf.js",
-      "_BQej_wha.js",
-      "_krB_LO5-.js",
-      "_CJa2S5qi.js"
+      "_D2ejFbqw.js",
+      "_BsMAxyDu.js",
+      "_CJsu0oF3.js",
+      "_CXepd9Zv.js",
+      "_2vkyVUhL.js",
+      "_DYfIXEUJ.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "summerReading/immutable/nodes/2.CRL4yX7X.js",
+    "file": "summerReading/immutable/nodes/2.DD2I17Ia.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_CNzqxiAI.js",
-      "_BoiGakL7.js",
-      "_FGnL2CKl.js",
-      "_CZhZaakf.js",
-      "_krB_LO5-.js",
-      "_jmpxI5Lk.js",
-      "_BQej_wha.js"
+      "_D2ejFbqw.js",
+      "_BsMAxyDu.js",
+      "_CpLbeKXf.js",
+      "_CJsu0oF3.js",
+      "_CXepd9Zv.js",
+      "_2vkyVUhL.js",
+      "_D_CXo6-R.js"
     ],
     "css": [
-      "summerReading/immutable/assets/2.xd1Dkoaj.css"
+      "summerReading/immutable/assets/2.j-SulZ66.css"
     ]
   },
-  "_BQej_wha.js": {
-    "file": "summerReading/immutable/chunks/BQej_wha.js",
-    "name": "render",
-    "imports": [
-      "_CZhZaakf.js",
-      "_CNzqxiAI.js"
-    ]
-  },
-  "_BoiGakL7.js": {
-    "file": "summerReading/immutable/chunks/BoiGakL7.js",
-    "name": "legacy",
-    "imports": [
-      "_CZhZaakf.js"
-    ]
-  },
-  "_CJa2S5qi.js": {
-    "file": "summerReading/immutable/chunks/CJa2S5qi.js",
-    "name": "entry",
-    "imports": [
-      "_CZhZaakf.js",
-      "_FGnL2CKl.js"
-    ]
-  },
-  "_CNzqxiAI.js": {
-    "file": "summerReading/immutable/chunks/CNzqxiAI.js",
-    "name": "disclose-version",
-    "imports": [
-      "_CZhZaakf.js"
-    ]
-  },
-  "_CZhZaakf.js": {
-    "file": "summerReading/immutable/chunks/CZhZaakf.js",
-    "name": "runtime"
-  },
-  "_FGnL2CKl.js": {
-    "file": "summerReading/immutable/chunks/FGnL2CKl.js",
-    "name": "index-client",
-    "imports": [
-      "_CZhZaakf.js"
-    ]
-  },
-  "_jmpxI5Lk.js": {
-    "file": "summerReading/immutable/chunks/jmpxI5Lk.js",
-    "name": "props",
-    "imports": [
-      "_CZhZaakf.js"
-    ]
-  },
-  "_krB_LO5-.js": {
-    "file": "summerReading/immutable/chunks/krB_LO5-.js",
+  "_2vkyVUhL.js": {
+    "file": "summerReading/immutable/chunks/2vkyVUhL.js",
     "name": "lifecycle",
     "imports": [
-      "_CZhZaakf.js"
+      "_CJsu0oF3.js"
+    ]
+  },
+  "_BsMAxyDu.js": {
+    "file": "summerReading/immutable/chunks/BsMAxyDu.js",
+    "name": "legacy",
+    "imports": [
+      "_CJsu0oF3.js"
+    ]
+  },
+  "_CJsu0oF3.js": {
+    "file": "summerReading/immutable/chunks/CJsu0oF3.js",
+    "name": "runtime"
+  },
+  "_CXepd9Zv.js": {
+    "file": "summerReading/immutable/chunks/CXepd9Zv.js",
+    "name": "render",
+    "imports": [
+      "_CJsu0oF3.js",
+      "_D2ejFbqw.js"
+    ]
+  },
+  "_CpLbeKXf.js": {
+    "file": "summerReading/immutable/chunks/CpLbeKXf.js",
+    "name": "index-client",
+    "imports": [
+      "_CJsu0oF3.js"
+    ]
+  },
+  "_D2ejFbqw.js": {
+    "file": "summerReading/immutable/chunks/D2ejFbqw.js",
+    "name": "disclose-version",
+    "imports": [
+      "_CJsu0oF3.js"
+    ]
+  },
+  "_DYfIXEUJ.js": {
+    "file": "summerReading/immutable/chunks/DYfIXEUJ.js",
+    "name": "entry",
+    "imports": [
+      "_CJsu0oF3.js",
+      "_CpLbeKXf.js"
+    ]
+  },
+  "_D_CXo6-R.js": {
+    "file": "summerReading/immutable/chunks/D_CXo6-R.js",
+    "name": "props",
+    "imports": [
+      "_CJsu0oF3.js"
     ]
   },
   "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff": {
@@ -144,12 +144,12 @@
     "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "summerReading/immutable/entry/start.DUn_FEsN.js",
+    "file": "summerReading/immutable/entry/start.B8NfApOg.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_CJa2S5qi.js"
+      "_DYfIXEUJ.js"
     ]
   }
 }
