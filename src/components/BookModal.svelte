@@ -10,7 +10,6 @@
       }
     }}
   >
-    >
     <div
       role="button"
       tabindex="0"
@@ -22,7 +21,6 @@
         }
       }}
     >
-      >
       <div class="modal-top-left">
         <img id="bookImage" src={modalData.imageUrl} alt="bookImage" />
       </div>
@@ -30,6 +28,7 @@
         <p class="modal-title">{modalData.title}</p>
         <p>{modalData.author}</p>
         <p>{modalData.genre}</p>
+        <p>{d3.format(",")(modalData.pages)} pages</p>
         <div
           class="star-rating"
           style={`visibility:${modalData.rating === 0 ? 'hidden' : 'visible'};`}
@@ -44,7 +43,7 @@
         <span class="modal-goodreads"
           >{modalData.rating === 0
             ? ''
-            : `${modalData.rating} from ${modalData.ratingTotal} ratings`}</span
+            : `${modalData.rating} from ${d3.format(",")(modalData.ratingTotal)} ratings`}</span
         >
       </div>
       <div class="modal-bottom">
@@ -63,6 +62,7 @@
 {/if}
 
 <script>
+  import * as d3 from 'd3';
   // modal code written almost entirely by ChatGPT with various prompts for extras (ie star ratings)
   export let open = false;
   export let onClose = () => {};

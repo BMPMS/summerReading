@@ -8,9 +8,10 @@ function QuadrantChart($$payload, $$props) {
   let chartData = fallback($$props["chartData"], () => [], true);
   let width = fallback($$props["width"], 400);
   let height = fallback($$props["height"], 400);
-  const themeX = { value: "short-long" };
+  const themeX = { value: "short-long", label: "shorter-longer" };
   const themeY = {
-    value: "conceptual-technical"
+    value: "conceptual-technical",
+    label: "conceptual-technical"
   };
   let svgNode;
   const colors = {
@@ -85,8 +86,8 @@ function QuadrantChart($$payload, $$props) {
       name: "topLeft",
       rectTransform: `translate(${margin.left},${margin.top})`,
       labelTransform: `translate(${margin.left + quadrantWidth},${margin.top - 20})`,
-      label: themeY.value.split("-")[0],
-      labelFill: "#D0D0D0",
+      label: themeY.label.split("-")[0],
+      labelFill: "#9a9a9a",
       rectFill: colors.orangeSubtle,
       markerPath: "M9,-4L1,0L9,4"
     },
@@ -94,8 +95,8 @@ function QuadrantChart($$payload, $$props) {
       name: "bottomLeft",
       rectTransform: `translate(${margin.left},${margin.top + quadrantHeight})`,
       labelTransform: `translate(${margin.left + quadrantWidth},${margin.top + chartHeight + 40})`,
-      label: themeY.value.split("-")[1],
-      labelFill: "#808080",
+      label: themeY.label.split("-")[1],
+      labelFill: "#6b6b6b",
       rectFill: colors.orangeStrong,
       markerPath: "M1, -4L9,0L1,4"
     },
@@ -103,7 +104,7 @@ function QuadrantChart($$payload, $$props) {
       name: "topRight",
       rectTransform: `translate(${margin.left + quadrantWidth},${margin.top})`,
       labelTransform: `translate(${margin.left - 20},${margin.top + quadrantHeight}) rotate(-90)`,
-      label: themeX.value.split("-")[0],
+      label: themeX.label.split("-")[0],
       labelFill: colors.orange,
       rectFill: colors.blueSubtle,
       markerPath: "M9,-4L1,0L9,4"
@@ -112,7 +113,7 @@ function QuadrantChart($$payload, $$props) {
       name: "bottomRight",
       rectTransform: `translate(${margin.left + quadrantWidth},${margin.top + quadrantHeight})`,
       labelTransform: `translate(${width - margin.right + 20},${margin.top + quadrantHeight}) rotate(90)`,
-      label: themeX.value.split("-")[1],
+      label: themeX.label.split("-")[1],
       labelFill: colors.blue,
       rectFill: colors.blueStrong,
       markerPath: "M1, -4L9,0L1,4"
@@ -139,8 +140,8 @@ function QuadrantChart($$payload, $$props) {
     svg.select("#rectLeft").attr("x", margin.left).attr("width", quadrantWidth).attr("y", margin.top + quadrantHeight - 1).attr("height", 2).attr("fill", colors.orange);
     svg.select("#rectRight").attr("x", margin.left + quadrantWidth).attr("width", quadrantWidth).attr("y", margin.top + quadrantHeight - 1).attr("height", 2).attr("fill", colors.blue);
     svg.select("#lineLeftRight").attr("x1", width / 2).attr("x2", width / 2).attr("y1", margin.top).attr("y2", height - margin.bottom).attr("stroke", "transparent").attr("stroke-width", 2).attr("marker-start", "url(#arrowMarkertopLeft)").attr("marker-end", "url(#arrowMarkerbottomLeft)");
-    svg.select("#rectTop").attr("x", margin.left + quadrantWidth - 1).attr("height", quadrantHeight - 1).attr("y", margin.top).attr("width", 2).attr("fill", "#D0D0D0");
-    svg.select("#rectBottom").attr("x", margin.left + quadrantWidth - 1).attr("height", quadrantHeight - 8).attr("y", margin.top + quadrantHeight + 1).attr("width", 2).attr("fill", "#808080");
+    svg.select("#rectTop").attr("x", margin.left + quadrantWidth - 1).attr("height", quadrantHeight - 1).attr("y", margin.top).attr("width", 2).attr("fill", "#9a9a9a");
+    svg.select("#rectBottom").attr("x", margin.left + quadrantWidth - 1).attr("height", quadrantHeight - 8).attr("y", margin.top + quadrantHeight + 1).attr("width", 2).attr("fill", "#6b6b6b");
     svg.select("#lineTopBottom").attr("x1", margin.left).attr("x2", width - margin.right).attr("y1", margin.top + quadrantHeight).attr("y2", margin.top + quadrantHeight).attr("stroke-width", 2).attr("stroke", "transparent").attr("marker-start", "url(#arrowMarkertopRight)").attr("marker-end", "url(#arrowMarkerbottomRight)");
     const quadrantData = getQuadrantData(quadrantWidth, quadrantHeight, chartHeight);
     const quadrantGroup = svg.select("#quadrantsGroup").selectAll(".quadrantGroup").data(quadrantData).join((group) => {
@@ -154,8 +155,8 @@ function QuadrantChart($$payload, $$props) {
     });
     quadrantGroup.select(".arrowMarker").attr("id", (d) => `arrowMarker${d.name}`).attr("viewBox", "0 -5 10 10").attr("refX", 5).attr("markerWidth", 10).attr("markerHeight", 10).attr("orient", "auto");
     quadrantGroup.select(".markerPath").attr("fill", (d) => d.labelFill).attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("d", (d) => d.markerPath);
-    quadrantGroup.select(".quadrantRect").attr("width", quadrantWidth).attr("height", quadrantHeight).attr("fill", (d) => d.rectFill).attr("transform", (d) => d.rectTransform);
-    quadrantGroup.select(".quadrantLabel").attr("text-anchor", "middle").attr("fill", (d) => d.labelFill).attr("font-size", axisFontSize).text((d) => d.label).attr("transform", (d) => d.labelTransform);
+    quadrantGroup.select(".quadrantRect").attr("pointer-events", "none").attr("width", quadrantWidth).attr("height", quadrantHeight).attr("fill", (d) => d.rectFill).attr("transform", (d) => d.rectTransform);
+    quadrantGroup.select(".quadrantLabel").attr("pointer-events", "none").attr("text-anchor", "middle").attr("fill", (d) => d.labelFill).attr("font-size", axisFontSize).text((d) => d.label).attr("transform", (d) => d.labelTransform);
     const bounds = {
       x0: 0,
       y0: 0,
@@ -164,8 +165,8 @@ function QuadrantChart($$payload, $$props) {
     };
     const xScaleDomain = d3.extent(chartData, (d) => +d[themeX.value]);
     const percentXScale = d3.scaleLinear().domain(xScaleDomain).range([0, quadrantWidth * 2]);
-    const yScaleDomain = d3.extent(chartData, (d) => +d[themeY.value]);
-    const percentYScale = d3.scaleLinear().domain(yScaleDomain).range([quadrantHeight * 2, 0]);
+    d3.extent(chartData, (d) => +d[themeY.value]);
+    const percentYScale = d3.scaleLinear().domain([0, 10]).range([0, quadrantHeight * 2]);
     const nodes = chartData.reduce(
       (acc, entry) => {
         acc.push({
@@ -177,6 +178,7 @@ function QuadrantChart($$payload, $$props) {
           amazonUrl: entry["Link"],
           rating: +entry["Goodreads Rank"],
           ratingTotal: +entry["rating total"],
+          pages: +entry["short-long"],
           x: percentXScale(+entry[themeX.value]),
           y: percentYScale(+entry[themeY.value])
         });
@@ -208,13 +210,13 @@ function QuadrantChart($$payload, $$props) {
     nodesGroup.select(".bookRect").attr("pointer-events", "none").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill", "white").attr("stroke-width", 0);
     nodesGroup.select(".outlineRect").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill-opacity", 0.2).attr("fill", "transparent").attr("stroke", "#A0A0A0").attr("stroke-width", 0.5).on("mouseover", (event, d) => {
       svg.selectAll(".outlineRect").attr("fill", "transparent");
-      d3.select(event.currentTarget).attr("fill", "#D0D0D0");
+      d3.select(event.currentTarget).attr("fill", "#9a9a9a");
     }).on("mouseout", (event, d) => {
       svg.selectAll(".outlineRect").attr("fill", "transparent");
     });
     nodesGroup.select(".bookImage").attr("pointer-events", "none").attr("pointer-events", "none").style("filter", "grayscale(100%)").attr("x", 2.5).attr("y", 2.5).attr("width", bookHeight - 5).attr("height", bookHeight - 5).attr("preserveAspectRatio", "xMidYMin slice").attr("xlink:href", (d) => d.imageUrl);
-    nodesGroup.select(".authorLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 - bookFontSize / 2).style("dominant-baseline", "middle").attr("font-size", bookFontSize).attr("fill", "#808080").text((d) => d.author);
-    nodesGroup.select(".titleLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 + bookFontSize / 1.5).style("dominant-baseline", "middle").attr("font-size", bookFontSize * 1.1).attr("fill", "#484848").attr("font-weight", 450).text((d) => d.title);
+    nodesGroup.select(".authorLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 - bookFontSize / 2).style("dominant-baseline", "middle").attr("font-size", bookFontSize).attr("fill", "#6b6b6b").text((d) => d.author);
+    nodesGroup.select(".titleLabel").attr("pointer-events", "none").attr("x", 5 + bookHeight).attr("y", bookHeight / 2 + bookFontSize / 1.5).style("dominant-baseline", "middle").attr("font-size", bookFontSize * 1.1).attr("fill", "#2a2a2a").attr("font-weight", 450).text((d) => d.title);
     simulation.on("tick", () => {
       nodesGroup.attr("transform", (d) => `translate(${margin.left + d.x},${margin.top + d.y})`);
     });
@@ -242,7 +244,7 @@ function BookModal($$payload, $$props) {
     $$payload.out += "<!--[-->";
     const each_array = ensure_array_like(Array(rounded));
     const each_array_1 = ensure_array_like(Array(emptyStars));
-    $$payload.out += `<div role="button" tabindex="0" class="modal-overlay">> <div role="button" tabindex="0" class="modal">> <div class="modal-top-left"><img id="bookImage"${attr("src", modalData.imageUrl)} alt="bookImage"/></div> <div class="modal-top-right"><p class="modal-title">${escape_html(modalData.title)}</p> <p>${escape_html(modalData.author)}</p> <p>${escape_html(modalData.genre)}</p> <div class="star-rating"${attr_style(`visibility:${modalData.rating === 0 ? "hidden" : "visible"};`)}><!--[-->`;
+    $$payload.out += `<div role="button" tabindex="0" class="modal-overlay"><div role="button" tabindex="0" class="modal"><div class="modal-top-left"><img id="bookImage"${attr("src", modalData.imageUrl)} alt="bookImage"/></div> <div class="modal-top-right"><p class="modal-title">${escape_html(modalData.title)}</p> <p>${escape_html(modalData.author)}</p> <p>${escape_html(modalData.genre)}</p> <p>${escape_html(d3.format(",")(modalData.pages))} pages</p> <div class="star-rating"${attr_style(`visibility:${modalData.rating === 0 ? "hidden" : "visible"};`)}><!--[-->`;
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       each_array[$$index];
       $$payload.out += `<span>★</span>`;
@@ -252,7 +254,7 @@ function BookModal($$payload, $$props) {
       each_array_1[$$index_1];
       $$payload.out += `<span>☆</span>`;
     }
-    $$payload.out += `<!--]--></div> <span class="modal-goodreads">${escape_html(modalData.rating === 0 ? "" : `${modalData.rating} from ${modalData.ratingTotal} ratings`)}</span></div> <div class="modal-bottom"><a class="buy-button"${attr("href", modalData.amazonUrl)} target="_blank" rel="noopener noreferrer">Buy Now on Amazon</a> <p>${escape_html(modalData.summary)}</p></div></div></div>`;
+    $$payload.out += `<!--]--></div> <span class="modal-goodreads">${escape_html(modalData.rating === 0 ? "" : `${modalData.rating} from ${d3.format(",")(modalData.ratingTotal)} ratings`)}</span></div> <div class="modal-bottom"><a class="buy-button"${attr("href", modalData.amazonUrl)} target="_blank" rel="noopener noreferrer">Buy Now on Amazon</a> <p>${escape_html(modalData.summary)}</p></div></div></div>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
@@ -268,12 +270,12 @@ function SuggestionsModal($$payload, $$props) {
   let why = "";
   if (show) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<div class="suggestions-backdrop" role="button" tabindex="0">> <div class="suggestions-modal" role="button" tabindex="0">> <p class="modal-title">Summer Reading Suggestions</p> <div class="suggestions-form-group"><label for="title">Book Title</label> <input id="title" type="text" class="suggestions-input"${attr("value", title)}/></div> <div class="suggestions-form-group"><label for="author">Author</label> <input id="author" type="text" class="suggestions-input"${attr("value", author)}/></div> <div class="suggestions-form-group"><label for="why">Why?</label> <textarea id="why" rows="6" class="suggestions-textarea">`;
+    $$payload.out += `<div class="suggestions-backdrop" role="button" tabindex="0"><div class="suggestions-modal" role="button" tabindex="0"><p class="suggestions-modal-title">Summer Reading Suggestions</p> <div class="suggestions-form-group"><label for="title">Book Title</label> <input id="title" type="text" class="suggestions-input"${attr("value", title)}/></div> <div class="suggestions-form-group"><label for="author">Author</label> <input id="author" type="text" class="suggestions-input"${attr("value", author)}/></div> <div class="suggestions-form-group"><label for="why">Why?</label> <textarea id="why" rows="6" class="suggestions-textarea">`;
     const $$body = escape_html(why);
     if ($$body) {
       $$payload.out += `${$$body}`;
     }
-    $$payload.out += `</textarea></div> <div class="suggestions-actions"><button>Cancel</button> <button>Send Email</button></div></div></div>`;
+    $$payload.out += `</textarea></div> <div class="suggestions-actions"><button>Send Email</button></div></div></div>`;
   } else {
     $$payload.out += "<!--[!-->";
   }

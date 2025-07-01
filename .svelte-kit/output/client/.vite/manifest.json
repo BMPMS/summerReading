@@ -1,6 +1,6 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "summerReading/immutable/entry/app.Bt_YP8Ne.js",
+    "file": "summerReading/immutable/entry/app.nthYoev6.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "summerReading/immutable/nodes/1.Cqzxse6M.js",
+    "file": "summerReading/immutable/nodes/1.ugcVeUQt.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
@@ -50,11 +50,11 @@
       "_CJsu0oF3.js",
       "_CXepd9Zv.js",
       "_2vkyVUhL.js",
-      "_DYfIXEUJ.js"
+      "_BCGnSvwk.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "summerReading/immutable/nodes/2.DD2I17Ia.js",
+    "file": "summerReading/immutable/nodes/2.BYr5Eo-A.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
@@ -69,7 +69,7 @@
       "_D_CXo6-R.js"
     ],
     "css": [
-      "summerReading/immutable/assets/2.j-SulZ66.css"
+      "summerReading/immutable/assets/2.CjrLYGbN.css"
     ]
   },
   "_2vkyVUhL.js": {
@@ -77,6 +77,14 @@
     "name": "lifecycle",
     "imports": [
       "_CJsu0oF3.js"
+    ]
+  },
+  "_BCGnSvwk.js": {
+    "file": "summerReading/immutable/chunks/BCGnSvwk.js",
+    "name": "entry",
+    "imports": [
+      "_CJsu0oF3.js",
+      "_CpLbeKXf.js"
     ]
   },
   "_BsMAxyDu.js": {
@@ -112,14 +120,6 @@
       "_CJsu0oF3.js"
     ]
   },
-  "_DYfIXEUJ.js": {
-    "file": "summerReading/immutable/chunks/DYfIXEUJ.js",
-    "name": "entry",
-    "imports": [
-      "_CJsu0oF3.js",
-      "_CpLbeKXf.js"
-    ]
-  },
   "_D_CXo6-R.js": {
     "file": "summerReading/immutable/chunks/D_CXo6-R.js",
     "name": "props",
@@ -144,12 +144,12 @@
     "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "summerReading/immutable/entry/start.B8NfApOg.js",
+    "file": "summerReading/immutable/entry/start.C3Sv9wnz.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_DYfIXEUJ.js"
+      "_BCGnSvwk.js"
     ]
   }
 }

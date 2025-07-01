@@ -9,7 +9,6 @@
         closeSuggestionsModal;
       }
     }}
-  >
     >
     <div
       class="suggestions-modal"
@@ -21,9 +20,8 @@
           stopPropagation;
         }
       }}
-    >
       >
-      <p class="modal-title">Summer Reading Suggestions</p>
+      <p class="suggestions-modal-title">Summer Reading Suggestions</p>
 
       <div class="suggestions-form-group">
         <label for="title">Book Title</label>
@@ -56,7 +54,6 @@
       </div>
 
       <div class="suggestions-actions">
-        <button on:click={closeSuggestionsModal}>Cancel</button>
         <button on:click={sendEmail}>Send Email</button>
       </div>
     </div>

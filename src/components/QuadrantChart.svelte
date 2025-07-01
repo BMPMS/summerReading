@@ -38,7 +38,7 @@
   export let chartData = [];
   export let width = 400;
   export let height = 400;
-  const themeX = { value: 'short-long', label: 'short-long' };
+  const themeX = { value: 'short-long', label: 'shorter-longer'};
   const themeY = {
     value: 'conceptual-technical',
     label: 'conceptual-technical',
@@ -159,8 +159,8 @@
       labelTransform: `translate(${margin.left + quadrantWidth},${
         margin.top - 20
       })`,
-      label: themeY.value.split('-')[0],
-      labelFill: '#D0D0D0',
+      label: themeY.label.split('-')[0],
+      labelFill: '#9a9a9a',
       rectFill: colors.orangeSubtle,
       markerPath: 'M9,-4L1,0L9,4',
     },
@@ -170,8 +170,8 @@
       labelTransform: `translate(${margin.left + quadrantWidth},${
         margin.top + chartHeight + 40
       })`,
-      label: themeY.value.split('-')[1],
-      labelFill: '#808080',
+      label: themeY.label.split('-')[1],
+      labelFill: '#6b6b6b',
       rectFill: colors.orangeStrong,
       markerPath: 'M1, -4L9,0L1,4',
     },
@@ -181,7 +181,7 @@
       labelTransform: `translate(${margin.left - 20},${
         margin.top + quadrantHeight
       }) rotate(-90)`,
-      label: themeX.value.split('-')[0],
+      label: themeX.label.split('-')[0],
       labelFill: colors.orange,
       rectFill: colors.blueSubtle,
       markerPath: 'M9,-4L1,0L9,4',
@@ -194,7 +194,7 @@
       labelTransform: `translate(${width - margin.right + 20},${
         margin.top + quadrantHeight
       }) rotate(90)`,
-      label: themeX.value.split('-')[1],
+      label: themeX.label.split('-')[1],
       labelFill: colors.blue,
       rectFill: colors.blueStrong,
       markerPath: 'M1, -4L9,0L1,4',
@@ -315,7 +315,7 @@
       .attr('height', quadrantHeight - 1)
       .attr('y', margin.top)
       .attr('width', 2)
-      .attr('fill', '#D0D0D0');
+      .attr('fill', '#9a9a9a');
 
     svg
       .select('#rectBottom')
@@ -323,7 +323,7 @@
       .attr('height', quadrantHeight - 8)
       .attr('y', margin.top + quadrantHeight + 1)
       .attr('width', 2)
-      .attr('fill', '#808080');
+      .attr('fill', '#6b6b6b');
 
     svg
       .select('#lineTopBottom')
@@ -375,6 +375,7 @@
 
     quadrantGroup
       .select('.quadrantRect')
+       .attr("pointer-events","none")
       .attr('width', quadrantWidth)
       .attr('height', quadrantHeight)
       .attr('fill', (d) => d.rectFill)
@@ -382,6 +383,7 @@
 
     quadrantGroup
       .select('.quadrantLabel')
+      .attr("pointer-events","none")
       .attr('text-anchor', 'middle')
       .attr('fill', (d) => d.labelFill)
       .attr('font-size', axisFontSize)
@@ -408,8 +410,8 @@
 
     const percentYScale = d3
       .scaleLinear()
-      .domain(yScaleDomain)
-      .range([quadrantHeight * 2, 0]);
+      .domain([0,10])
+      .range([0,quadrantHeight * 2]);
 
     // nodes reduce
     const nodes = chartData.reduce((acc, entry) => {
@@ -422,6 +424,7 @@
         amazonUrl: entry['Link'],
         rating: +entry['Goodreads Rank'],
         ratingTotal: +entry['rating total'],
+        pages: +entry['short-long'],
         x: percentXScale(+entry[themeX.value]),
         y: percentYScale(+entry[themeY.value]),
       });
@@ -504,7 +507,7 @@
       .attr('stroke-width', 0.5)
       .on('mouseover', (event, d) => {
         svg.selectAll('.outlineRect').attr('fill', 'transparent');
-        d3.select(event.currentTarget).attr('fill', '#D0D0D0');
+        d3.select(event.currentTarget).attr('fill', '#9a9a9a');
       })
       .on('mouseout', (event, d) => {
         svg.selectAll('.outlineRect').attr('fill', 'transparent');
@@ -531,7 +534,7 @@
       .attr('y', bookHeight / 2 - bookFontSize / 2)
       .style('dominant-baseline', 'middle')
       .attr('font-size', bookFontSize)
-      .attr('fill', '#808080')
+      .attr('fill', '#6b6b6b')
       .text((d) => d.author);
 
     nodesGroup
@@ -541,7 +544,7 @@
       .attr('y', bookHeight / 2 + bookFontSize / 1.5)
       .style('dominant-baseline', 'middle')
       .attr('font-size', bookFontSize * 1.1)
-      .attr('fill', '#484848')
+      .attr('fill', '#2a2a2a')
       .attr('font-weight', 450)
       .text((d) => d.title);
 
