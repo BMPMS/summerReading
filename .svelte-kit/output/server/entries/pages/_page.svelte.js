@@ -165,7 +165,6 @@ function QuadrantChart($$payload, $$props) {
     };
     const xScaleDomain = d3.extent(chartData, (d) => +d[themeX.value]);
     const percentXScale = d3.scaleLinear().domain(xScaleDomain).range([0, quadrantWidth * 2]);
-    d3.extent(chartData, (d) => +d[themeY.value]);
     const percentYScale = d3.scaleLinear().domain([0, 10]).range([0, quadrantHeight * 2]);
     const nodes = chartData.reduce(
       (acc, entry) => {
@@ -204,7 +203,7 @@ function QuadrantChart($$payload, $$props) {
       return enter;
     });
     nodesGroup.attr("transform", (d) => `translate(${margin.left + d.x},${margin.top + d.y})`).style("cursor", "pointer").on("click", (event, d) => {
-    });
+    }).attr("opacity", 0).transition().duration(1e3).attr("opacity", 1);
     nodesGroup.select(".fadeRect").attr("rx", 3).attr("ry", 3).attr("x", bookWidth * 0.85).attr("height", bookHeight).attr("width", bookWidth * 0.15).attr("fill", "url(#fade-gradient)");
     nodesGroup.select(".maskGroup").attr("mask", "url(#right-fade-mask)");
     nodesGroup.select(".bookRect").attr("pointer-events", "none").attr("rx", 3).attr("ry", 3).attr("width", bookWidth).attr("height", bookHeight).attr("fill", "white").attr("stroke-width", 0);
@@ -223,7 +222,7 @@ function QuadrantChart($$payload, $$props) {
     simulation.nodes(nodes);
     simulation.alpha(1).restart();
   }
-  if (width && height && chartData && themeX && themeY) {
+  if (width && height && chartData && themeX && themeY && chartData.length > 0) {
     drawChart();
   }
   $$payload.out += `<svg><defs><marker id="arrowStart"><path id="arrowStartPath"></path></marker><marker id="arrowEnd"><path id="arrowEndPath"></path></marker><mask id="right-fade-mask"><linearGradient id="fade-gradient"><stop id="fade-gradient-stop1"></stop><stop id="fade-gradient-stop2"></stop></linearGradient><rect id="rightFadeMaskRect"></rect></mask></defs><g id="quadrantsGroup"></g><rect id="rectLeft"></rect><rect id="rectRight"></rect><line id="lineLeftRight"></line><rect id="rectTop"></rect><rect id="rectBottom"></rect><line id="lineTopBottom"></line><g id="nodesGroup"></g></svg>`;
@@ -285,7 +284,7 @@ function SuggestionsModal($$payload, $$props) {
 }
 function _page($$payload, $$props) {
   push();
-  let chartData = [];
+  let chartData = null;
   let width = 0;
   let height = 0;
   let showModal = false;
@@ -295,6 +294,11 @@ function _page($$payload, $$props) {
     showModal = false;
   }
   $$payload.out += `<div class="header"><div class="header-left"><div class="top-row"><div class="title"></div> <div class="right-side" role="button" tabindex="0"></div></div> <span class="chat1">Educator-Recommended Reads from Our 2025 Survey</span> <span class="chat2"></span></div> <div class="header-right"><a href="https://www.evalhere.org/" target="_blank" rel="noopener noreferrer" class="logo-link"><img src="/summerReading/hereLogo.png" alt="Logo"/></a></div></div> <div class="chart">`;
+  {
+    $$payload.out += "<!--[-->";
+    $$payload.out += `<div class="loader"><div class="dots"><div class="dot d1"></div> <div class="dot d2"></div> <div class="dot d3"></div> <div class="dot d4"></div></div></div>`;
+  }
+  $$payload.out += `<!--]--> `;
   QuadrantChart($$payload, { chartData, width, height });
   $$payload.out += `<!----> `;
   BookModal($$payload, {
@@ -305,8 +309,7 @@ function _page($$payload, $$props) {
   $$payload.out += `<!----> `;
   SuggestionsModal($$payload, { show: showSuggestions });
   $$payload.out += `<!----></div> <div class="footer"><span>Development by <a href="https://www.bmdata.co.uk">BM Data Visualisation</a>.
-    The design for this visualisation is 100% indebted to Evelina Parrou and her
-    article <a href="https://www.theplot.media/p/story-books"><i>Back with story books</i></a>. Many thanks for the inspiration.</span></div>`;
+    The design for this visualisation is inspired by an article in The Plot <a href="https://www.theplot.media/p/story-books"><i>Back with story books</i></a>.</span></div>`;
   pop();
 }
 export {

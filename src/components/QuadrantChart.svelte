@@ -202,7 +202,7 @@
   ];
 
   // reactive block
-  $: if (width && height && chartData && themeX && themeY) {
+  $: if (width && height && chartData && themeX && themeY && chartData.length > 0) {
     drawChart();
   }
 
@@ -406,8 +406,6 @@
       .domain(xScaleDomain)
       .range([0, quadrantWidth * 2]);
 
-    const yScaleDomain = d3.extent(chartData, (d) => +d[themeY.value]);
-
     const percentYScale = d3
       .scaleLinear()
       .domain([0,10])
@@ -469,7 +467,11 @@
       .attr('transform',
         (d) => `translate(${margin.left + d.x},${margin.top + d.y})`)
       .style('cursor', 'pointer')
-      .on('click', (event, d) => { handleClick(d);});
+      .on('click', (event, d) => { handleClick(d);})
+            .attr("opacity",0)
+            .transition()
+            .duration(1000)
+            .attr('opacity', 1);
 
     // overlay fade rect
     nodesGroup

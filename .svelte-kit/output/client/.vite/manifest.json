@@ -1,6 +1,6 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "summerReading/immutable/entry/app.nthYoev6.js",
+    "file": "summerReading/immutable/entry/app.DY-VyDIh.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "summerReading/immutable/nodes/1.ugcVeUQt.js",
+    "file": "summerReading/immutable/nodes/1.Ci50CXxb.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
@@ -50,11 +50,11 @@
       "_CJsu0oF3.js",
       "_CXepd9Zv.js",
       "_2vkyVUhL.js",
-      "_BCGnSvwk.js"
+      "_Ck7lc0CH.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "summerReading/immutable/nodes/2.BYr5Eo-A.js",
+    "file": "summerReading/immutable/nodes/2.CFgweygj.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
@@ -65,11 +65,11 @@
       "_CpLbeKXf.js",
       "_CJsu0oF3.js",
       "_CXepd9Zv.js",
-      "_2vkyVUhL.js",
-      "_D_CXo6-R.js"
+      "_D_CXo6-R.js",
+      "_2vkyVUhL.js"
     ],
     "css": [
-      "summerReading/immutable/assets/2.CjrLYGbN.css"
+      "summerReading/immutable/assets/2.DajV9TR2.css"
     ]
   },
   "_2vkyVUhL.js": {
@@ -77,14 +77,6 @@
     "name": "lifecycle",
     "imports": [
       "_CJsu0oF3.js"
-    ]
-  },
-  "_BCGnSvwk.js": {
-    "file": "summerReading/immutable/chunks/BCGnSvwk.js",
-    "name": "entry",
-    "imports": [
-      "_CJsu0oF3.js",
-      "_CpLbeKXf.js"
     ]
   },
   "_BsMAxyDu.js": {
@@ -104,6 +96,14 @@
     "imports": [
       "_CJsu0oF3.js",
       "_D2ejFbqw.js"
+    ]
+  },
+  "_Ck7lc0CH.js": {
+    "file": "summerReading/immutable/chunks/Ck7lc0CH.js",
+    "name": "entry",
+    "imports": [
+      "_CJsu0oF3.js",
+      "_CpLbeKXf.js"
     ]
   },
   "_CpLbeKXf.js": {
@@ -144,12 +144,12 @@
     "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "summerReading/immutable/entry/start.C3Sv9wnz.js",
+    "file": "summerReading/immutable/entry/start.DnOcMk6k.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_BCGnSvwk.js"
+      "_Ck7lc0CH.js"
     ]
   }
 }

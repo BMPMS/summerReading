@@ -30,12 +30,25 @@
 </div>
 
 <div class="chart" bind:offsetWidth={width} bind:offsetHeight={height}>
-  <QuadrantChart
-    on:openModal={openModalFromChild}
-    {chartData}
-    {width}
-    {height}
-  />
+
+  {#if !chartData}
+    <div class="loader">
+      <div class="dots">
+        <div class="dot d1"></div>
+        <div class="dot d2"></div>
+        <div class="dot d3"></div>
+        <div class="dot d4"></div>
+      </div>
+    </div>
+  {/if}
+    <QuadrantChart
+            on:openModal={openModalFromChild}
+            {chartData}
+            {width}
+            {height}
+    />
+
+
   <BookModal open={showModal} onClose={closeModal} {modalData} />
   <SuggestionsModal
     show={showSuggestions}
@@ -46,11 +59,10 @@
 <div class="footer">
   <span>
     Development by <a href="https://www.bmdata.co.uk">BM Data Visualisation</a>.
-    The design for this visualisation is 100% indebted to Evelina Parrou and her
-    article
+    The design for this visualisation is inspired by an article in The Plot
     <a href="https://www.theplot.media/p/story-books"
       ><i>Back with story books</i></a
-    >. Many thanks for the inspiration.
+    >.
   </span>
 </div>
 
@@ -62,7 +74,7 @@
   import BookModal from '../components/BookModal.svelte';
   import SuggestionsModal from '../components/SuggestionsModal.svelte';
 
-  let chartData = [];
+  let chartData = null;
   let width = 0;
   let height = 0;
 
@@ -79,6 +91,8 @@
   function closeModal() {
     showModal = false;
   }
+
+
   onMount(async () => {
     const googleSheetUrl =
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vSWcO6BAmSQkVUniM33E6X32N9XpP0-uRXq3ocWTeVBHUPbI9K2hiSF7W5qR_1JqNhqaDtzH8JG5B4d/pub?gid=0&single=true&output=csv';
@@ -92,7 +106,5 @@
     chartData = await parsed.data;
   });
 
-  const suggestionsButtonClick = () => {
-    suggestionsModal = true;
-  };
+
 </script>

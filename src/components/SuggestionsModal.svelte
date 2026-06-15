@@ -64,6 +64,7 @@
  // modal code written almost entirely by ChatGPT with additional styling and a few prompts to perfect
 
   import { createEventDispatcher } from 'svelte';
+ import {stopPropagation} from "svelte/legacy";
   export let show = false;
 
   const dispatch = createEventDispatcher();
