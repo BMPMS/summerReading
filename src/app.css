@@ -296,7 +296,7 @@ suggestions-label {
 
 @media (max-width: 800px) {
     .title::before {
-        content: "2025 Reading List";
+        content: "2025 List";
     }
 }
 

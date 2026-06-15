@@ -1,6 +1,6 @@
 {
   ".svelte-kit/generated/client-optimized/app.js": {
-    "file": "summerReading/immutable/entry/app.DY-VyDIh.js",
+    "file": "summerReading/immutable/entry/app.BqoxBXO9.js",
     "name": "entry/app",
     "src": ".svelte-kit/generated/client-optimized/app.js",
     "isEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/1.js": {
-    "file": "summerReading/immutable/nodes/1.Ci50CXxb.js",
+    "file": "summerReading/immutable/nodes/1.Q1-Urqho.js",
     "name": "nodes/1",
     "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
     "isEntry": true,
@@ -50,11 +50,11 @@
       "_CJsu0oF3.js",
       "_CXepd9Zv.js",
       "_2vkyVUhL.js",
-      "_Ck7lc0CH.js"
+      "_HF8dVUZP.js"
     ]
   },
   ".svelte-kit/generated/client-optimized/nodes/2.js": {
-    "file": "summerReading/immutable/nodes/2.CFgweygj.js",
+    "file": "summerReading/immutable/nodes/2.P64snGw9.js",
     "name": "nodes/2",
     "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
     "isEntry": true,
@@ -69,7 +69,7 @@
       "_2vkyVUhL.js"
     ],
     "css": [
-      "summerReading/immutable/assets/2.DajV9TR2.css"
+      "summerReading/immutable/assets/2.DUwhRBWY.css"
     ]
   },
   "_2vkyVUhL.js": {
@@ -98,14 +98,6 @@
       "_D2ejFbqw.js"
     ]
   },
-  "_Ck7lc0CH.js": {
-    "file": "summerReading/immutable/chunks/Ck7lc0CH.js",
-    "name": "entry",
-    "imports": [
-      "_CJsu0oF3.js",
-      "_CpLbeKXf.js"
-    ]
-  },
   "_CpLbeKXf.js": {
     "file": "summerReading/immutable/chunks/CpLbeKXf.js",
     "name": "index-client",
@@ -127,6 +119,14 @@
       "_CJsu0oF3.js"
     ]
   },
+  "_HF8dVUZP.js": {
+    "file": "summerReading/immutable/chunks/HF8dVUZP.js",
+    "name": "entry",
+    "imports": [
+      "_CJsu0oF3.js",
+      "_CpLbeKXf.js"
+    ]
+  },
   "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff": {
     "file": "summerReading/immutable/assets/figtree-latin-400-normal.BD4aNku5.woff",
     "src": "node_modules/@fontsource/figtree/files/figtree-latin-400-normal.woff"
@@ -144,12 +144,12 @@
     "src": "node_modules/@fontsource/figtree/files/figtree-latin-ext-400-normal.woff2"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
-    "file": "summerReading/immutable/entry/start.DnOcMk6k.js",
+    "file": "summerReading/immutable/entry/start.Bm40BY2x.js",
     "name": "entry/start",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
     "isEntry": true,
     "imports": [
-      "_Ck7lc0CH.js"
+      "_HF8dVUZP.js"
     ]
   }
 }
